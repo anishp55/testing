@@ -1,5 +1,6 @@
 name: ASAe Deploy 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["ASAe Build"]
     types:
