@@ -1,6 +1,6 @@
 name: ASAe Deploy 
 on:
-  workflow_rub:
+  workflow_run:
     workflows: ["ASAe Build"]
     types:
     - completed
