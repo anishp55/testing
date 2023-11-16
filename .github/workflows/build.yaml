@@ -1,0 +1,46 @@
+name: AzureSpringApps
+on:
+  pull_request:
+    branches:
+    - main
+    - automation
+
+env:
+  ASC_PACKAGE_PATH: ${{ github.workspace }}
+  AZURE_SUBSCRIPTION: ${{ vars.SUB }}
+
+jobs:
+  deploy_to_production:
+    runs-on: ubuntu-latest
+    name: build with source code
+    steps:
+      - name: Checkout GitHub Action
+        uses: actions/checkout@v2
+
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS }}
+
+
+      - name: Create or update build
+        uses: azure/spring-apps-deploy@v1
+        with:
+          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+          action: build
+          service-name: asa-e-si-01
+          build-name: spring-upgrade
+          package: ${{ env.ASC_PACKAGE_PATH }}
+          builder: default
+
+      # - name: deploy to production step with source code
+      #   uses: azure/spring-apps-deploy@v1
+      #   with:
+      #     azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+      #     action: deploy
+      #     service-name: asa-e-si-02
+      #     app-name: spring-upgrade
+      #     runtime-version: Java_17
+      #     build-env: -BP_JVM_VERSION 17
+      #     use-staging-deployment: false
+      #     package: ${{ env.ASC_PACKAGE_PATH }}
