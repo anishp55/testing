@@ -1,4 +1,4 @@
-name: AzureSpringApps
+name: ASAe Build 
 on:
   pull_request:
     branches:
@@ -22,7 +22,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDS }}
 
-
       - name: Create or update build
         uses: azure/spring-apps-deploy@v1
         with:
@@ -33,15 +32,3 @@ jobs:
           package: ${{ env.ASC_PACKAGE_PATH }}
           builder: default
           build-env: -BP_JVM_VERSION 17
-          
-      # - name: deploy to production step with source code
-      #   uses: azure/spring-apps-deploy@v1
-      #   with:
-      #     azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
-      #     action: deploy
-      #     service-name: asa-e-si-02
-      #     app-name: spring-upgrade
-      #     runtime-version: Java_17
-      #     build-env: -BP_JVM_VERSION 17
-      #     use-staging-deployment: false
-      #     package: ${{ env.ASC_PACKAGE_PATH }}
