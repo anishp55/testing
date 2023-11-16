@@ -30,6 +30,7 @@ jobs:
           action: deploy
           service-name: asa-e-si-02
           app-name: spring-upgrade
+          deployment: default
           container-registry: akptest.azurecr.io
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
