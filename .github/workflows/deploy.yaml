@@ -3,9 +3,8 @@ on:
   workflow_run:
     workflows: ["ASAe Build"]
     types:
-      - completed
-  workflow_dispatch: []
-
+    - completed
+  workflow_dispatch:
 
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
