@@ -4,7 +4,7 @@ on:
     branches:
     - main
     - automation
-  workflow_dispatch: []
+  workflow_dispatch:
 
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
